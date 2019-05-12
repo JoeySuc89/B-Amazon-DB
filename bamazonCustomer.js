@@ -21,13 +21,14 @@ var connection = mysql.createConnection({
 connection.connect(function(err){
   if (err) throw err;
   console.log("connected as id " + connection.threadId + "\n");
-  avaialableProducts();
+  availableProducts();
 });
 
-function avaialableProducts(){
+function availableProducts(){
 
   var query = connection.query(
     "SELECT * FROM products", function (err,res){
+      console.log("Welcome to Bamazon!")
       console.log("Our current inventory is . . . . \n")
       console.log("Item-Number" + " | " + "Product Name" + " | " + "Department" + " | " + "Price" + " | " + "Stock" + " | ");
       console.log("_____________________________________________________________");
@@ -62,7 +63,7 @@ function customerPurchase() {
       } else {
         console.log("Your order is being processed. Your total is: $" +  parseFloat(answer.stock * res[0].price));
         remainingStock(answer);
-        avaialableProducts();
+        availableProducts();
       };
         //console.log("Item_Number: " + answer.item_number + " | Stock: " + answer.stock);
   })
